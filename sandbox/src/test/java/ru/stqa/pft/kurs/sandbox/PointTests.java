@@ -11,7 +11,8 @@ public class PointTests {
     Point p1 = new Point(7.9, 1.9);
 
     Point p2 = new Point(1.7, 3.1);
-    
+
+
   }
 
   }
