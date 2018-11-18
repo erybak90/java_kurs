@@ -40,7 +40,7 @@ public class ContactDeletionTests {
         }
         wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
     }
-    
+
     @AfterMethod
     public void tearDown() {
         wd.quit();
