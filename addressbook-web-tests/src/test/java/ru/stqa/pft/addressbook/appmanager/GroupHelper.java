@@ -33,8 +33,8 @@ public class GroupHelper extends HelperBase {
     click(By.name("delete"));
   }
 
-  public void selectGroup() {
-    click(By.name("selected[]"));
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initGroupModification() {
@@ -58,6 +58,6 @@ public class GroupHelper extends HelperBase {
   }
 
   public int getGroupCount() {
-    return wd.findElements(By.name("Selected[]")).size();
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
