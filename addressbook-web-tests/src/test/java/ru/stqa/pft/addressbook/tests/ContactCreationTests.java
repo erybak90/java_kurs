@@ -10,15 +10,13 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
-
-        app.getContactHelper().gotoAddContact();
         int before = app.getContactHelper().getContactCount();
+        app.getContactHelper().gotoAddContact();
         app.getContactHelper().createContact(new ContactData("lastname1", "mobilephone1",
                 "email1", "firstname1", "test1"), true);
         app.getNavigationHelper().retourntoContactsPage();
         int after = app.getContactHelper().getContactCount();
-      Assert.assertEquals(after, before +1);
+        Assert.assertEquals(after, before +1);
     }
-
 
 }
