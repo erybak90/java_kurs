@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test 
+  @Test
   public void testContactModification() {
 
     if (! app.getContactHelper().isThereAContact()) {
