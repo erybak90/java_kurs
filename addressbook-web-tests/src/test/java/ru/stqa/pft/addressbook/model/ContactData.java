@@ -5,39 +5,45 @@ import java.util.Objects;
 public class ContactData {
 
 
-  private int id;
-  private final String lastname;
-  private final String mobilephone;
-  private final String email;
-  private final String firstname;
-
-
+  private int id = Integer.MAX_VALUE;
+  private String lastname;
+  private String mobilephone;
+  private String email;
+  private String firstname;
   private String group;
-
-
-
-  public ContactData(int id, String lastname, String mobilephone, String email, String firstname, String group) {
-    this.id = id;
-    this.lastname = lastname;
-    this.mobilephone = mobilephone;
-    this.email = email;
-    this.firstname = firstname;
-    this.group = group;
-  }
-
-
-
-  public ContactData(String lastname, String mobilephone, String email, String firstname, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.lastname = lastname;
-    this.mobilephone = mobilephone;
-    this.email = email;
-    this.firstname = firstname;
-    this.group = group;
-  }
 
   public int getId() {
     return id;
+}
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withMobilephone(String mobilephone) {
+    this.mobilephone = mobilephone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   public String getLastname() {
@@ -69,9 +75,8 @@ public class ContactData {
             '}';
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
