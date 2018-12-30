@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.util.Objects;
+
 public class GroupData {
   private int id = Integer.MAX_VALUE;
   private String name;
@@ -51,18 +53,19 @@ public class GroupData {
             ", name='" + name + '\'' +
             '}';
   }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-
     GroupData groupData = (GroupData) o;
-
-    return name != null ? name.equals(groupData.name) : groupData.name == null;
+    return id == groupData.id &&
+            Objects.equals(name, groupData.name);
   }
+
   @Override
   public int hashCode() {
-    return name != null ? name.hashCode() : 0;
+    return Objects.hash(id, name);
   }
 
 
