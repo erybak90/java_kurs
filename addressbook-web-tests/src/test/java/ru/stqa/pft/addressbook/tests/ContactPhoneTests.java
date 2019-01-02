@@ -1,8 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -17,12 +14,10 @@ public class ContactPhoneTests extends TestBase {
     @Test
     public void testContactPhones() {
         app.goTo().contactsPage();
-        ContactData contact = app.contact().all2().iterator().next();
+        ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
-        //assertThat(contact.getMobilephone(), equalTo(cleaned(contactInfoFromEditForm.getMobilephone())));
-        //assertThat(contact.getWorkphone(), equalTo(cleaned(contactInfoFromEditForm.getWorkphone())));a
 
     }
 
@@ -34,16 +29,8 @@ public class ContactPhoneTests extends TestBase {
 
     }
 
-
-        //String result ="";
-        //if (contact.getHomephone() !=null){
-            //result = result + contact.getHomephone();
-
-        //}
-        //return result;
-    //}
-
     public static String cleaned(String phone){
-            return phone.replaceAll("\\s", "").replaceAll("[-()]","");
+            return phone.replaceAll("\\s", "")
+                    .replaceAll("[-()]","");
         }
     }
