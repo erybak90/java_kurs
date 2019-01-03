@@ -23,14 +23,15 @@ public class ContactPhoneTests extends TestBase {
 
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHomephone(), contact.getMobilephone(), contact.getWorkphone())
-                .stream().filter((s) -> ! s.equals(""))
+                .stream().filter((s) -> !s.equals(""))
                 .map(ContactPhoneTests::cleaned)
                 .collect(Collectors.joining("\n"));
 
     }
 
-    public static String cleaned(String phone){
-            return phone.replaceAll("\\s", "")
-                    .replaceAll("[-()]","");
-        }
+    public static String cleaned(String phone) {
+        return phone.replaceAll("\\s", "")
+                .replaceAll("[-()]", "");
     }
+
+}
