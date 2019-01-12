@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,15 +17,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTests extends TestBase {
 
     @DataProvider
-    public Iterator<Object[]> validContacts() {
+    public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        list.add(new Object[]{new ContactData().withLastname("lastname 1").withFirstname("firstname 1")
-                .withMobilephone("mobilephone 1")});
-        list.add(new Object[]{new ContactData().withLastname("lastname 2").withFirstname("firstname 2")
-                .withMobilephone("mobilephone 2")});
-        list.add(new Object[]{new ContactData().withLastname("lastname 3").withFirstname("firstname 3")
-                .withMobilephone("mobilephone 3")});
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+         String line = reader.readLine();
+         while (line !=null){
+             String[] split = line.split(";");
+             list.add(new Object[] {new ContactData().withFirstname(split[0]).
+                     withLastname(split[1]).withMobilephone(split[2])});
+             line = reader.readLine();
+         }
         return list.iterator();
+
+        //list.add(new Object[]{new ContactData().withLastname("lastname 1").withFirstname("firstname 1")
+                //.withMobilephone("mobilephone 1")});
+        //list.add(new Object[]{new ContactData().withLastname("lastname 2").withFirstname("firstname 2")
+                //.withMobilephone("mobilephone 2")});
+        //list.add(new Object[]{new ContactData().withLastname("lastname 3").withFirstname("firstname 3")
+               // .withMobilephone("mobilephone 3")});
+       // return list.iterator();
     }
 
 
