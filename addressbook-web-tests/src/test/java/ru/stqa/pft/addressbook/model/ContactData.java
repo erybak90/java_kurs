@@ -169,27 +169,19 @@ public class ContactData {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(lastname, that.lastname) &&
-            Objects.equals(firstname, that.firstname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, lastname, firstname);
-  }
-
-
-  @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", lastname='" + lastname + '\'' +
+            ", mobilephone='" + mobilephone + '\'' +
+            ", email='" + email + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
             ", firstname='" + firstname + '\'' +
+            ", group='" + group + '\'' +
+            ", address='" + address + '\'' +
+            ", workphone='" + workphone + '\'' +
+            ", homephone='" + homephone + '\'' +
             '}';
   }
 
