@@ -14,6 +14,7 @@ import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -22,6 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class GroupCreationTests extends TestBase {
+  Properties properties = new Properties();
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
