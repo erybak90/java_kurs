@@ -2,36 +2,86 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addressbook")
+
 @XStreamAlias("contact")
+
+
 public class ContactData {
 
 @XStreamOmitField
+@Id
+@Column(name = "id")
   private int id = Integer.MAX_VALUE;
+
+  @Column(name = "lastname")
   private String lastname;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilephone;
+
+  @Transient
   private String email;
+
+  @Transient
   private String email2;
+
+  @Transient
   private String email3;
+
+  @Column(name = "firstname")
   private String firstname;
+
+  @Transient
   private String group;
+
+  @Transient
   private String address;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workphone;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String homephone;
+
+  @Transient
   private String allPhones;
+
+  @Transient
   private String allEmails;
+
+  @Transient
   private String allAddresses;
-  private File photo;
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", lastname='" + lastname + '\'' +
+            ", firstname='" + firstname + '\'' +
+            '}';
+  }
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -166,23 +216,6 @@ public class ContactData {
 
   public String getGroup() {
     return group;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", lastname='" + lastname + '\'' +
-            ", mobilephone='" + mobilephone + '\'' +
-            ", email='" + email + '\'' +
-            ", email2='" + email2 + '\'' +
-            ", email3='" + email3 + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", group='" + group + '\'' +
-            ", address='" + address + '\'' +
-            ", workphone='" + workphone + '\'' +
-            ", homephone='" + homephone + '\'' +
-            '}';
   }
 
 
