@@ -25,8 +25,8 @@ public class GroupModificationTests extends TestBase {
     public void ensurePreconditions() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-        app.goTo().groupPage();
-        if (app.group().all().size() == 0){
+        if (app.db().groups().size() == 0){
+            app.goTo().groupPage();
             app.group().create(new GroupData()
                     .withName(properties.getProperty("groupName"))
                     .withHeader(properties.getProperty("groupHeader"))
@@ -34,26 +34,18 @@ public class GroupModificationTests extends TestBase {
         }
     }
 
-   // public void ensurePreconditions(){
-       // app.goTo().groupPage();
-        //if (app.group().all().size() == 0) {
-           // app.group().create(new GroupData().withName("test1"));
-      // }
-   // }
-
   @Test
   public void testGroupModification () {
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
       GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId()).withName(properties.getProperty("groupNewName"))
               .withHeader(properties.getProperty("groupNewHeader"))
               .withFooter(properties.getProperty("groupNewFooter"));
+      app.goTo().groupPage();
     app.group().modify(group);
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertEquals(after.size(),before.size());
-
-    assertEquals(before, after);
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
 }
 }

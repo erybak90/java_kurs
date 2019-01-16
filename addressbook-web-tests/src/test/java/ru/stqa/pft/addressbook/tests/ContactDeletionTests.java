@@ -25,7 +25,7 @@ public class ContactDeletionTests extends TestBase {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData().withFirstname(properties.getProperty("contactFirstname"))
               .withLastname(properties.getProperty("contactLastname"))
               .withGroup(properties.getProperty("contactGroup"))
@@ -43,13 +43,13 @@ public class ContactDeletionTests extends TestBase {
 
 
     app.goTo().contactsPage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
     app.goTo().contactsPage();
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size() - 1);
-    assertThat(after, equalTo(before.without(deletedContact)));
+
 
     }
 
