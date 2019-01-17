@@ -42,5 +42,32 @@ public class DbHelper {
         session.close();
         return new Contacts(result);
     }
+
+    public int getContactListSize() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        int result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list().size();
+        session.close();
+        return result;
+
+    }
+
+    public ContactData getContact(Integer id) {
+        Session session=sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result =session.createQuery("from ContactData where id=:id").setParameter("id",id).list();
+        session.getTransaction().commit();
+        session.close();
+        return result.get(0);
+    }
+
+    public GroupData getGroup(Integer id) {
+        Session session=sessionFactory.openSession();
+        session.beginTransaction();
+        List<GroupData> result =session.createQuery("from GroupData where id=:id").setParameter("id",id).list();
+        session.getTransaction().commit();
+        session.close();
+        return result.get(0);
+    }
 }
 

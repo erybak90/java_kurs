@@ -36,7 +36,7 @@ public class GroupData {
     return contacts;
   }
 
-  @ManyToMany(mappedBy = "groups")
+  @ManyToMany(fetch = FetchType.EAGER, mappedBy = "groups")
   private Set<ContactData> contacts = new HashSet<ContactData>();
 
   public int getId() {
