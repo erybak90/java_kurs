@@ -28,7 +28,7 @@ public class ContactDeletionTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData().withFirstname(properties.getProperty("contactFirstname"))
               .withLastname(properties.getProperty("contactLastname"))
-              .withGroup(properties.getProperty("contactGroup"))
+              //.withGroup(properties.getProperty("contactGroup"))
               .withAddress(properties.getProperty("contactAddress"))
               .withHomephone(properties.getProperty("contactHomePhone"))
               .withMobilephone(properties.getProperty("contactMobilePhone"))
